@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: server-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: server
+  template:
+    metadata:
+      labels:
+        component: server
+    spec:
+      containers:
+        - name: server
+          image: myazdanibiouki/server
+          ports:
+            - containerPort: 5000
+          resources:
+            limits:
+              cpu: '2'
+              memory: '2G'
+            requests:
+              cpu: '100m'
+              memory: '100Mi'
+          env:
+            - name: DATABASE_URL
+              value: database_url
