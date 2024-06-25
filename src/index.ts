@@ -1,6 +1,7 @@
 import express from 'express';
 import protectedRoutes from './server/routes/index';
-import unprotectedRoutes from './server/routes/user';
+import unProtectedRoutes from './server/routes/user';
+import healthRoute from './server/routes/health';
 import * as dotenv from 'dotenv';
 import cors from 'cors';
 import bodyParser from 'body-parser';
@@ -18,7 +19,8 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 app.use(express.static("static"));
 
-app.use('/api', unprotectedRoutes);
+app.use('/api', healthRoute)
+app.use('/api', unProtectedRoutes);
 app.use('/api',protect, protectedRoutes);
 
 

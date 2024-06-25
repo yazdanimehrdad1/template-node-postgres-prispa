@@ -3,6 +3,7 @@ import userRoutes from './user';
 import { Router } from 'express';
 
 const router = Router()
+
 router.use(healthRouts)
 router.use(userRoutes)
 
