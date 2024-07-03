@@ -1,6 +1,5 @@
 SERVICE_NAME = template_api
-SERVICE_NAME = template_api
-SERVICE_NAME = template_api
+
 test-make:
 	echo "Makefile is working"
 setup:

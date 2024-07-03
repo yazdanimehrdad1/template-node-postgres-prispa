@@ -1,13 +1,40 @@
 version: '3.9'
 
 services:
+  database:
+    container_name: pg_db
+    image: postgres:15
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres-data:/postgres/data
   api:
     build:
       context: .
       dockerfile: Dockerfile
     volumes:
-      - /app/node_modules
-      - ./src:/app
-    environment:
-      DATABASE_URL: database_url
-    
+      - data:/backend/data
+    ports:
+      - 5000:5000
+    env_file:
+      - .env
+    depends_on:
+      - database
+  # pgadmin:
+  #   container_name: pgadmin
+  #   image: dpage/pgadmin4
+  #   depends_on:
+  #     - database
+  #   restart: UNLESS_STOPPED
+  #   ports:
+  #     - 5050:80
+  #   env_file:
+  #     - .env
+
+# Only the named volumes should be listed here
+volumes:
+  postgres-data:
+  data:

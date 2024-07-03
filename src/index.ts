@@ -24,4 +24,4 @@ app.use('/api', unProtectedRoutes);
 app.use('/api',protect, protectedRoutes);
 
 
-app.listen(port,()=>{console.log("app is running on port 5000")});
+app.listen(port,()=>{console.log(`app is running on port ${port}`)});
